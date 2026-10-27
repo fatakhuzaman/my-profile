@@ -13,11 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call(ContentSeeder::class);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // The admin account is created with `php artisan make:filament-user`;
+        // this throwaway login only exists on local machines.
+        if (app()->isLocal()) {
+            User::query()->firstOrCreate(
+                ['email' => 'test@example.com'],
+                User::factory()->raw(['name' => 'Test User', 'email' => 'test@example.com']),
+            );
+        }
     }
 }

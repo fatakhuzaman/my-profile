@@ -78,11 +78,23 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'id'),
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => env('APP_FAKER_LOCALE', 'id_ID'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Supported Content Locales
+    |--------------------------------------------------------------------------
+    |
+    | The locales the site content is published in. The first locale is the
+    | default and is served without a URL prefix; the others are prefixed.
+    |
+    */
+
+    'supported_locales' => ['id', 'en'],
 
     /*
     |--------------------------------------------------------------------------

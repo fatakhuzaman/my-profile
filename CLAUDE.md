@@ -1,7 +1,3 @@
-@AGENTS.md
-
-===
-
 <laravel-boost-guidelines>
 === foundation rules ===
 

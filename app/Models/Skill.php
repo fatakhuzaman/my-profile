@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Concerns\HasPublishedFlag;
+use App\Models\Concerns\HasSortOrder;
+use Database\Factories\SkillFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Skill extends Model
+{
+    /** @use HasFactory<SkillFactory> */
+    use HasFactory, HasPublishedFlag, HasSortOrder;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'icon',
+        'proficiency',
+        'group',
+        'is_published',
+        'sort_order',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'proficiency' => 'integer',
+            'is_published' => 'boolean',
+        ];
+    }
+}
