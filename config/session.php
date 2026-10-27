@@ -38,6 +38,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Session Serialization
+    |--------------------------------------------------------------------------
+    |
+    | Session data is serialized as JSON instead of native PHP serialization
+    | to prevent PHP object deserialization gadget chain attacks.
+    |
+    | Supported: "json", "php"
+    |
+    */
+
+    'serialization' => 'json',
+
+    /*
+    |--------------------------------------------------------------------------
     | Session Encryption
     |--------------------------------------------------------------------------
     |
