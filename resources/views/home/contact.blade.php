@@ -6,12 +6,30 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
                     <div class="section-title text-center wow fadeInUp delay-0-2s">
-                        <p>contact</p>
+                        <p>Contact</p>
                         <h2>Get in Touch with Me!</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
+                <div class="col-lg-12">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+                </div>
                 <div class="col-lg-4">
                     <div class="contact-content-part  wow fadeInUp delay-0-2s">
                         <!-- START CONTACT SINGLEDESIGN AREA -->
@@ -20,7 +38,9 @@
                                 <i class="ri-map-pin-line"></i>
                             </div>
                             <h2>our office:</h2>
-                            <p>Gonobhavan, Bangladesh</p>
+                            <a href="https://www.google.com/maps/place/Kabupaten+Tegal,+Jawa+Tengah/@-7.0557966,108.9911029,11z/data=!3m1!4b1!4m6!3m5!1s0x2e6f956c2fa9dee5:0x3027a76e352bb90!8m2!3d-6.9902371!4d109.140438!16s%2Fg%2F11bzzxbqcd?entry=ttu&g_ep=EgoyMDI1MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                                <p>Tegal, Indonesia</p>
+                            </a>
                         </div>
                         <!-- / END CONTACT SINGLEDESIGN AREA -->
                         <!-- START CONTACT SINGLEDESIGN AREA -->
@@ -29,7 +49,9 @@
                                 <i class="ri-phone-line"></i>
                             </div>
                             <h2>contact number:</h2>
-                            <p>+1234321321</p>
+                            <a href="https://wa.me/6288226377174" target="_blank">
+                                <p>+6288226377174</p>
+                            </a>
                         </div>
                         <!-- / END CONTACT SINGLEDESIGN AREA -->
                         <!-- START CONTACT SINGLEDESIGN AREA -->
@@ -38,7 +60,9 @@
                                 <i class="ri-mail-line"></i>
                             </div>
                             <h2>Email us:</h2>
-                            <p>khunihashina@mail.com</p>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhamadnurfatakhuzaman@gmail.com&su=Hello&body=Halo%20saya%20ingin%20menghubungi%20Anda" target="_blank">
+                                <p>muhamadnur<br>fatakhuzaman@gmail.com</p>
+                            </a>
                         </div>
                         <!-- / END CONTACT SINGLEDESIGN AREA -->
                     </div>
@@ -46,29 +70,48 @@
                 <!-- START CONTACT FORM DESIGN AREA -->
                 <div class="col-lg-8">
                     <div class="contact-form contact-form-area wow fadeInUp delay-0-4s">
-                        <form id="contactForm" class="contactForm" name="contactForm" action="" method="post">
+                        <form id="contactForm" class="contactForm" name="contactForm" action="{{ route('contact.send') }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Full Name</label>
-                                        <input type="text" id="name" name="name" class="form-control" value="" placeholder="Steve Milner" required="" data-error="Please enter your Name" />
+                                        <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Write your name" data-error="Please enter your Name" />
                                         <label for="name" class="for-icon"><i class="far fa-user"></i></label>
-                                        <div class="help-block with-errors"></div>
+                                        <div class="help-block with-errors">
+                                            @error('name')
+                                                <small style="color: red">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email Address</label>
-                                        <input type="email" id="email" name="email" class="form-control" value="" placeholder="hello@websitename.com" required="" data-error="Please enter your Email" />
+                                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Write your email" data-error="Please enter your Email" />
                                         <label for="email" class="for-icon"><i class="far fa-envelope"></i></label>
-                                        <div class="help-block with-errors"></div>
+                                        <div class="help-block with-errors">
+                                            @error('email')
+                                                <small style="color: red">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="message">Your Message</label>
-                                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Write Your message" required="" data-error="Please Write your Message"></textarea>
-                                        <div class="help-block with-errors"></div>
+                                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Write Your message" data-error="Please Write your Message">{{ old('message') }}</textarea>
+                                        <div class="help-block with-errors">
+                                            @error('message')
+                                                <small style="color: red">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

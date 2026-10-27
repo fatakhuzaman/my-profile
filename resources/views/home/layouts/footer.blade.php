@@ -6,9 +6,9 @@
                 <div class="col-lg-12">
                     <div class="call-to-action-part wow fadeInUp delay-0-2s text-center">
                         <h2>Are You Ready to <span>kickstart</span> your <span>project</span> with a touch of magic?</h2>
-                        <p>Reach out and let's make it happen ✨. I'm also available for full-time or Part-time opportunities to push the boundaries of design and deliver exceptional work.</p>
+                        <p>Reach out and let's make it happen ✨. I'm also available for Full-time or Part-time opportunities to push the boundaries of software development and deliver exceptional work.</p>
                         <div class="hero-btns">
-                            <a href="#contact" class="theme-btn">Let's Talk <i class="ri-download-line"></i></a>
+                            <a href="contact" class="theme-btn">Let's Talk <i class="ri-message-2-line"></i></a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="col-lg-6">
                         <div class="copyright-text">
                             <p>
-                                Copyright @2024, <a href="index.html">Dorbesh</a> All
+                                Copyright @2025, <a href="index.html">Fatakhuzaman</a> All
                                 Rights Reserved.
                             </p>
                         </div>
@@ -33,7 +33,7 @@
                     <div class="col-lg-6">
                         <div class="copyright-text extra-copyright">
                             <p>
-                                Crafted with ❤️ Themesvila
+                                Crafted with ❤️
                             </p>
                         </div>
                     </div>

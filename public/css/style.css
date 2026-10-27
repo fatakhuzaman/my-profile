@@ -2147,7 +2147,7 @@ ul.extra-skills li i {
     font-size: 16px;
     font-weight: 400;
     color: var(--main-color);
-    content: '/Hour';
+    content: ' starting price';
 }
 
 .pricing-item .pricing-details {

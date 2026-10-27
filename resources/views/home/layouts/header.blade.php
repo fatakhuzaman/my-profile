@@ -10,7 +10,7 @@
     <meta name="keywords" content="personal, portfolio new, html, one page, bootstrap, new html template, design, creative, onepage, clean, modern">
     <meta name="author" content="Fatakhuzaman">
     <!-- PAGE TITLE -->
-    <title>Fatakhuzaman - Home</title>
+    <title>{{ $title }}</title>
     <!-- FAV ICON -->
     <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
@@ -52,18 +52,13 @@
         </svg>
         <div class="preloader-heading">
             <div class="load-text">
-                <span>f</span>
+                <span>l</span>
+                <span>o</span>
                 <span>a</span>
-                <span>t</span>
-                <span>a</span>
-                <span>k</span>
-                <span>h</span>
-                <span>u</span>
-                <span>z</span>
-                <span>a</span>
-                <span>m</span>
-                <span>a</span>
+                <span>d</span>
+                <span>i</span>
                 <span>n</span>
+                <span>g</span>
             </div>
         </div>
     </div>

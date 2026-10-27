@@ -5,13 +5,13 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12">
                 <div class="section-title text-center wow fadeInUp delay-0-2s">
-                    <p>Latest News</p>
-                    <h2>Stories</h2>
+                    <p>Please Wait</p>
+                    <h2>Coming Soon</h2>
                 </div>
             </div>
         </div>
         <!-- START SINGLE VLOG DESIGN AREA -->
-        <div class="row blog-post-box align-items-center">
+        {{-- <div class="row blog-post-box align-items-center">
             <div class="col-lg-6">
                 <div class="blog-post-img">
                     <a href="#">
@@ -29,10 +29,10 @@
                     <a class="theme-btn theme-btn-two" href="single-project.html">Read more <i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- START SINGLE VLOG DESIGN AREA -->
         <!-- START SINGLE VLOG DESIGN AREA -->
-        <div class="row blog-post-box align-items-center">
+        {{-- <div class="row blog-post-box align-items-center">
             <div class="col-lg-6">
                 <div class="blog-post-img">
                     <a href="#">
@@ -50,10 +50,10 @@
                     <a class="theme-btn theme-btn-two" href="single-project.html">Read more <i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- START SINGLE VLOG DESIGN AREA -->
         <!-- START SINGLE VLOG DESIGN AREA -->
-        <div class="row blog-post-box align-items-center">
+        {{-- <div class="row blog-post-box align-items-center">
             <div class="col-lg-6">
                 <div class="blog-post-img">
                     <a href="#">
@@ -71,7 +71,7 @@
                     <a class="theme-btn theme-btn-two" href="single-project.html">Read more <i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- START SINGLE VLOG DESIGN AREA -->
     </div>
 </section>
