@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+        "laravel.vscode-laravel",
+        "bmewburn.vscode-intelephense-client",
+        "onecentlin.laravel-blade",
+        "recca0120.vscode-phpunit",
+        "bradlc.vscode-tailwindcss",
+        "editorconfig.editorconfig",
+        "mikestead.dotenv"
+    ],
+    "unwantedRecommendations": [
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "mohamedbenhida.laravel-intellisense",
+        "codingyu.laravel-goto-view",
+        "onecentlin.laravel5-snippets",
+        "ryannaddy.laravel-artisan",
+        "open-southeners.laravel-pint",
+        "hbenl.vscode-test-explorer",
+        "ms-vscode.test-adapter-converter"
+    ]
+}
