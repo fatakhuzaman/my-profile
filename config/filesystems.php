@@ -17,6 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Media Disk
+    |--------------------------------------------------------------------------
+    |
+    | The publicly readable disk that CMS uploads (images, CV, logos) are
+    | stored on. Locally this is the "public" disk; in production it can be
+    | pointed at an S3-compatible bucket such as Cloudflare R2.
+    |
+    */
+
+    'media_disk' => env('MEDIA_DISK', 'public'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Filesystem Disks
     |--------------------------------------------------------------------------
     |

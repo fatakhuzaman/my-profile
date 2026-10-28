@@ -98,6 +98,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | CMS Administrators
+    |--------------------------------------------------------------------------
+    |
+    | Comma separated e-mail addresses allowed into the /admin panel outside
+    | of local development, e.g. ADMIN_EMAILS="you@example.com".
+    |
+    */
+
+    'admin_emails' => array_values(array_filter(array_map('trim', explode(',', (string) env('ADMIN_EMAILS', ''))))),
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |

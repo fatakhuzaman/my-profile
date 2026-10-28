@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum ResumeEntryType: string
+use Filament\Support\Contracts\HasLabel;
+
+enum ResumeEntryType: string implements HasLabel
 {
     case Work = 'work';
     case Internship = 'internship';
@@ -17,5 +19,10 @@ enum ResumeEntryType: string
             self::Education => __('Education'),
             self::Achievement => __('Achievements'),
         };
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label();
     }
 }

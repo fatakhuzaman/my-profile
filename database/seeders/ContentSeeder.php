@@ -12,6 +12,7 @@ use App\Models\Setting;
 use App\Models\Skill;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -19,6 +20,8 @@ use Illuminate\Support\Str;
  *
  * Every table is only seeded while it is still empty, so running this
  * again never overwrites content that has since been edited in the CMS.
+ * Images and files bundled in `public/` are copied onto the media disk so
+ * they can be managed (and replaced) from the CMS like any upload.
  */
 class ContentSeeder extends Seeder
 {
@@ -46,8 +49,8 @@ class ContentSeeder extends Seeder
                 'id' => 'Programmer dengan pengalaman 4+ tahun, sebelumnya di PT Astra Daihatsu Motor dan PT Metafora Indonesia Teknologi.',
                 'en' => 'Programmer with 4+ years of experience, formerly at PT Astra Daihatsu Motor and PT Metafora Indonesia Teknologi.',
             ],
-            'person.photo' => 'images/about/profile.png',
-            'person.cv_file' => 'files/Muhamad-Nur-Fatakhuzaman_CV.pdf',
+            'person.photo' => $this->importAsset('images/about/profile.png', 'profile'),
+            'person.cv_file' => $this->importAsset('files/Muhamad-Nur-Fatakhuzaman_CV.pdf', 'files'),
             'person.available_for_work' => true,
             'contact.email' => 'muhamadnurfatakhuzaman@gmail.com',
             'contact.notification_email' => 'fatakhuzaman@gmail.com',
@@ -66,7 +69,7 @@ class ContentSeeder extends Seeder
                 'id' => 'Hubungi saya dan mari wujudkan bersama ✨. Saya juga terbuka untuk peluang Full-time maupun Part-time untuk menghadirkan pengembangan software yang luar biasa.',
                 'en' => "Reach out and let's make it happen ✨. I'm also available for Full-time or Part-time opportunities to push the boundaries of software development and deliver exceptional work.",
             ],
-            'seo.default_og_image' => 'images/about/profile.jpg',
+            'seo.default_og_image' => $this->importAsset('images/about/profile.jpg', 'seo'),
         ];
 
         if (Setting::query()->exists()) {
@@ -424,7 +427,7 @@ class ContentSeeder extends Seeder
             fn (string $name, int $proficiency): array => [
                 'name' => $name,
                 'proficiency' => $proficiency,
-                'icon' => 'images/skills/'.strtolower($name).'.png',
+                'icon' => $this->importAsset('images/skills/'.strtolower($name).'.png', 'skills'),
             ],
             array_keys($skills),
             $skills,
@@ -434,12 +437,34 @@ class ContentSeeder extends Seeder
     private function seedClients(): void
     {
         $this->createWhenEmpty(Client::class, [
-            ['name' => 'PT Astra Daihatsu Motor', 'logo' => 'images/client-logos/daihatsu.png'],
-            ['name' => 'PT Metafora Indonesia Teknologi', 'logo' => 'images/client-logos/idmetafora.png'],
-            ['name' => 'CV Media Pratama Solusinet', 'logo' => 'images/client-logos/mps.png'],
-            ['name' => 'Diskominfo Kabupaten Tegal', 'logo' => 'images/client-logos/diskominfo.png'],
-            ['name' => 'Kinz', 'logo' => 'images/client-logos/kinz.png'],
+            ['name' => 'PT Astra Daihatsu Motor', 'logo' => $this->importAsset('images/client-logos/daihatsu.png', 'clients')],
+            ['name' => 'PT Metafora Indonesia Teknologi', 'logo' => $this->importAsset('images/client-logos/idmetafora.png', 'clients')],
+            ['name' => 'CV Media Pratama Solusinet', 'logo' => $this->importAsset('images/client-logos/mps.png', 'clients')],
+            ['name' => 'Diskominfo Kabupaten Tegal', 'logo' => $this->importAsset('images/client-logos/diskominfo.png', 'clients')],
+            ['name' => 'Kinz', 'logo' => $this->importAsset('images/client-logos/kinz.png', 'clients')],
         ]);
+    }
+
+    /**
+     * Copy a file bundled in `public/` onto the media disk and return its
+     * path there, or null when the bundled file is missing.
+     */
+    private function importAsset(string $publicPath, string $directory): ?string
+    {
+        $source = public_path($publicPath);
+
+        if (! is_file($source)) {
+            return null;
+        }
+
+        $disk = Storage::disk(config('filesystems.media_disk'));
+        $target = $directory.'/'.basename($publicPath);
+
+        if (! $disk->exists($target)) {
+            $disk->put($target, file_get_contents($source), 'public');
+        }
+
+        return $target;
     }
 
     /**

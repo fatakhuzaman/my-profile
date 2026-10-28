@@ -80,6 +80,16 @@ class PostTest extends TestCase
         $this->assertSame(2, Post::count());
     }
 
+    public function test_blank_translations_are_not_stored(): void
+    {
+        $first = Post::factory()->create(['slug' => ['id' => 'pertama', 'en' => '']]);
+        $second = Post::factory()->create(['slug' => ['id' => 'kedua', 'en' => null]]);
+
+        $this->assertSame(['id'], $first->fresh()->getTranslatedLocales('slug'));
+        $this->assertSame(['id'], $second->fresh()->getTranslatedLocales('slug'));
+        $this->assertSame(0, Post::translatedIn('en')->count());
+    }
+
     public function test_reading_time_is_at_least_one_minute(): void
     {
         $post = Post::factory()->create(['body' => ['id' => 'Singkat saja.', 'en' => str_repeat('word ', 450)]]);

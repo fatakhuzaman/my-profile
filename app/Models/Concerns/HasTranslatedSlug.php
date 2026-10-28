@@ -8,6 +8,34 @@ use Illuminate\Database\Eloquent\Builder;
 trait HasTranslatedSlug
 {
     /**
+     * Drop empty translations before saving. A locale left blank in the CMS
+     * would otherwise be stored as `""`, which counts as "translated" and
+     * collides with other blank slugs on the per-locale unique index.
+     */
+    public static function bootHasTranslatedSlug(): void
+    {
+        static::saving(function (self $model): void {
+            $model->forgetEmptyTranslations();
+        });
+    }
+
+    protected function forgetEmptyTranslations(): void
+    {
+        foreach ($this->getTranslatableAttributes() as $attribute) {
+            if (! $this->isDirty($attribute)) {
+                continue;
+            }
+
+            $translations = array_filter(
+                json_decode($this->getAttributes()[$attribute] ?? '[]', true) ?: [],
+                fn (mixed $value): bool => $value !== null && $value !== '',
+            );
+
+            $this->attributes[$attribute] = json_encode($translations, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+    }
+
+    /**
      * Match the slug of the given locale, defaulting to the current locale.
      */
     #[Scope]
