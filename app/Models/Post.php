@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static> published()
+ * @method static \Illuminate\Database\Eloquent\Builder<static> latestPublished()
+ * @method static \Illuminate\Database\Eloquent\Builder<static> whereSlug(string $slug, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder<static> translatedIn(?string $locale = null)
+ */
 class Post extends Model
 {
     /** @use HasFactory<PostFactory> */

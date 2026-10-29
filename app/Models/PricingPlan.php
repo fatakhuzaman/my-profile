@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static> published()
+ * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
+ */
 class PricingPlan extends Model
 {
     /** @use HasFactory<PricingPlanFactory> */

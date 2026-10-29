@@ -6,12 +6,16 @@ use App\Enums\ResumeEntryType;
 use App\Models\Concerns\HasPublishedFlag;
 use App\Models\Concerns\HasSortOrder;
 use Database\Factories\ResumeEntryFactory;
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static> published()
+ * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
+ * @method static \Illuminate\Database\Eloquent\Builder<static> ofType(\App\Enums\ResumeEntryType $type)
+ */
 class ResumeEntry extends Model
 {
     /** @use HasFactory<ResumeEntryFactory> */
@@ -62,8 +66,10 @@ class ResumeEntry extends Model
         ];
     }
 
-    #[Scope]
-    protected function ofType(Builder $query, ResumeEntryType $type): void
+    /**
+     * @param  Builder<static>  $query
+     */
+    public function scopeOfType(Builder $query, ResumeEntryType $type): void
     {
         $query->where('type', $type);
     }

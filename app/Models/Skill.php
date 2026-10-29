@@ -8,6 +8,10 @@ use Database\Factories\SkillFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static> published()
+ * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
+ */
 class Skill extends Model
 {
     /** @use HasFactory<SkillFactory> */

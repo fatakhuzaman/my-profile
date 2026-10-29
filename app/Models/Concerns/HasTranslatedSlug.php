@@ -2,7 +2,6 @@
 
 namespace App\Models\Concerns;
 
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 
 trait HasTranslatedSlug
@@ -37,9 +36,10 @@ trait HasTranslatedSlug
 
     /**
      * Match the slug of the given locale, defaulting to the current locale.
+     *
+     * @param  Builder<static>  $query
      */
-    #[Scope]
-    protected function whereSlug(Builder $query, string $slug, ?string $locale = null): void
+    public function scopeWhereSlug(Builder $query, string $slug, ?string $locale = null): void
     {
         $locale ??= app()->getLocale();
 
@@ -49,9 +49,10 @@ trait HasTranslatedSlug
     /**
      * Only include records that have content written in the given locale,
      * so untranslated records never show up as duplicate pages.
+     *
+     * @param  Builder<static>  $query
      */
-    #[Scope]
-    protected function translatedIn(Builder $query, ?string $locale = null): void
+    public function scopeTranslatedIn(Builder $query, ?string $locale = null): void
     {
         $locale ??= app()->getLocale();
 

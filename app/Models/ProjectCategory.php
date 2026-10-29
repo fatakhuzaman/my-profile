@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
+ * @method static \Illuminate\Database\Eloquent\Builder<static> whereSlug(string $slug, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder<static> translatedIn(?string $locale = null)
+ */
 class ProjectCategory extends Model
 {
     /** @use HasFactory<ProjectCategoryFactory> */

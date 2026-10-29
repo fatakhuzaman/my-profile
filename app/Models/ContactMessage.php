@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Database\Factories\ContactMessageFactory;
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static> unread()
+ */
 class ContactMessage extends Model
 {
     /** @use HasFactory<ContactMessageFactory> */
@@ -60,8 +62,10 @@ class ContactMessage extends Model
         return $this->belongsTo(PricingPlan::class);
     }
 
-    #[Scope]
-    protected function unread(Builder $query): void
+    /**
+     * @param  Builder<static>  $query
+     */
+    public function scopeUnread(Builder $query): void
     {
         $query->whereNull('read_at');
     }

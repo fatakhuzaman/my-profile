@@ -2,16 +2,16 @@
 
 namespace App\Models\Concerns;
 
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 
 trait HasPublishedFlag
 {
     /**
      * Only include records that are switched on in the CMS.
+     *
+     * @param  Builder<static>  $query
      */
-    #[Scope]
-    protected function published(Builder $query): void
+    public function scopePublished(Builder $query): void
     {
         $query->where('is_published', true);
     }

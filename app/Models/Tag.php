@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder<static> whereSlug(string $slug, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder<static> translatedIn(?string $locale = null)
+ */
 class Tag extends Model
 {
     /** @use HasFactory<TagFactory> */

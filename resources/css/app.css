@@ -1,11 +1,11 @@
-@import 'tailwindcss';
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
+/*
+ * Public site styles. The Dorbesh theme files are bundled as-is; anything
+ * specific to this site lives in site.css so the theme stays easy to update.
+ */
+@import './theme/bootstrap.min.css';
+@import './vendor/remixicon/remixicon.css';
+@import './theme/animate.min.css';
+@import './theme/spacing.css';
+@import './theme/style.css';
+@import './theme/responsive.css';
+@import './site.css';
