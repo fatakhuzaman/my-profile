@@ -1,3 +1,18 @@
+/*
+ * Images carry width/height attributes so the browser can reserve space
+ * before they load; height:auto keeps their real aspect ratio when CSS
+ * shrinks them to the column width.
+ */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.about-image-part2 img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
 /* Prices carry their own currency and suffix in the markup. */
 .pricing-item .pricing-header .price:before,
 .pricing-item .pricing-header .price:after {

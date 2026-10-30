@@ -10,9 +10,9 @@ use App\Models\ResumeEntry;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Skill;
+use Database\Seeders\Concerns\ImportsBundledAssets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -25,6 +25,8 @@ use Illuminate\Support\Str;
  */
 class ContentSeeder extends Seeder
 {
+    use ImportsBundledAssets;
+
     /**
      * Run the database seeds.
      */
@@ -443,28 +445,6 @@ class ContentSeeder extends Seeder
             ['name' => 'Diskominfo Kabupaten Tegal', 'logo' => $this->importAsset('images/client-logos/diskominfo.png', 'clients')],
             ['name' => 'Kinz', 'logo' => $this->importAsset('images/client-logos/kinz.png', 'clients')],
         ]);
-    }
-
-    /**
-     * Copy a file bundled in `public/` onto the media disk and return its
-     * path there, or null when the bundled file is missing.
-     */
-    private function importAsset(string $publicPath, string $directory): ?string
-    {
-        $source = public_path($publicPath);
-
-        if (! is_file($source)) {
-            return null;
-        }
-
-        $disk = Storage::disk(config('filesystems.media_disk'));
-        $target = $directory.'/'.basename($publicPath);
-
-        if (! $disk->exists($target)) {
-            $disk->put($target, file_get_contents($source), 'public');
-        }
-
-        return $target;
     }
 
     /**
