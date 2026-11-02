@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * A manual redirect, used to keep old URLs (e.g. after a slug change)
  * pointing at their new location so search rankings are preserved.
+ *
+ * @mixin IdeHelperRedirect
  */
 class Redirect extends Model
 {

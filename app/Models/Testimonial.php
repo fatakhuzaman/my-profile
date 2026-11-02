@@ -12,6 +12,8 @@ use Spatie\Translatable\HasTranslations;
 /**
  * @method static \Illuminate\Database\Eloquent\Builder<static> published()
  * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
+ *
+ * @mixin IdeHelperTestimonial
  */
 class Testimonial extends Model
 {

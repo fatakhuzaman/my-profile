@@ -12,6 +12,8 @@ use Spatie\Translatable\HasTranslations;
 /**
  * @method static \Illuminate\Database\Eloquent\Builder<static> whereSlug(string $slug, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder<static> translatedIn(?string $locale = null)
+ *
+ * @mixin IdeHelperTag
  */
 class Tag extends Model
 {

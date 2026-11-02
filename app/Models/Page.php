@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @mixin IdeHelperPage
+ */
 class Page extends Model
 {
     /** @use HasFactory<PageFactory> */

@@ -16,6 +16,8 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder<static> latestPublished()
  * @method static \Illuminate\Database\Eloquent\Builder<static> whereSlug(string $slug, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder<static> translatedIn(?string $locale = null)
+ *
+ * @mixin IdeHelperPost
  */
 class Post extends Model
 {

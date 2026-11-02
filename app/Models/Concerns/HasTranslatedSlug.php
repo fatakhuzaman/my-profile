@@ -3,7 +3,15 @@
 namespace App\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
+/**
+ * Used by translatable models only.
+ *
+ * @mixin Model
+ * @mixin HasTranslations
+ */
 trait HasTranslatedSlug
 {
     /**

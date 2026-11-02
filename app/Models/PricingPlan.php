@@ -13,6 +13,8 @@ use Spatie\Translatable\HasTranslations;
 /**
  * @method static \Illuminate\Database\Eloquent\Builder<static> published()
  * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
+ *
+ * @mixin IdeHelperPricingPlan
  */
 class PricingPlan extends Model
 {

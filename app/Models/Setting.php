@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * @mixin IdeHelperSetting
+ */
 class Setting extends Model
 {
     /** @use HasFactory<SettingFactory> */

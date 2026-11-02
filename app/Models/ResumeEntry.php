@@ -15,6 +15,8 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder<static> published()
  * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
  * @method static \Illuminate\Database\Eloquent\Builder<static> ofType(\App\Enums\ResumeEntryType $type)
+ *
+ * @mixin IdeHelperResumeEntry
  */
 class ResumeEntry extends Model
 {

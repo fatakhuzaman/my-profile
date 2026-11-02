@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static \Illuminate\Database\Eloquent\Builder<static> published()
  * @method static \Illuminate\Database\Eloquent\Builder<static> ordered()
+ *
+ * @mixin IdeHelperSkill
  */
 class Skill extends Model
 {

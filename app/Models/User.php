@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
