@@ -9,6 +9,8 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Used by translatable models only.
  *
+ * @method static void saving(\Closure|string $callback)
+ *
  * @mixin Model
  * @mixin HasTranslations
  */

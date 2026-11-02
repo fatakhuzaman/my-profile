@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Localization;
 use Database\Factories\SettingFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -67,7 +68,7 @@ class Setting extends Model
 
         $locale ??= app()->getLocale();
 
-        return $value[$locale] ?? $value[config('app.supported_locales')[0]] ?? $default;
+        return $value[$locale] ?? $value[Localization::defaultLocale()] ?? $default;
     }
 
     /**

@@ -2,11 +2,7 @@
 
 @php
     /** @var \App\Models\PricingPlan $plan */
-    $price = match (true) {
-        $plan->price === null => null,
-        $plan->currency === 'IDR' => 'Rp '.number_format((float) $plan->price, 0, ',', '.'),
-        default => \Illuminate\Support\Number::currency((float) $plan->price, in: $plan->currency, locale: 'en', precision: 0),
-    };
+    $price = $plan->formatted_price;
 @endphp
 
 <div class="col-lg-4 col-md-6">

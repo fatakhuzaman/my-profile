@@ -2,6 +2,7 @@
 
 namespace App\Filament\Support;
 
+use App\Support\Localization;
 use Closure;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Get;
@@ -17,17 +18,12 @@ use Illuminate\Validation\Rules\Unique;
  */
 class Translations
 {
-    public static function defaultLocale(): string
-    {
-        return config('app.supported_locales')[0];
-    }
-
     /**
      * The locale currently selected in the form's locale switcher.
      */
     public static function activeLocale(mixed $livewire): string
     {
-        return $livewire->activeLocale ?? static::defaultLocale();
+        return $livewire->activeLocale ?? Localization::defaultLocale();
     }
 
     /**
@@ -36,7 +32,7 @@ class Translations
      */
     public static function requiredInDefaultLocale(): Closure
     {
-        return fn (mixed $livewire): bool => static::activeLocale($livewire) === static::defaultLocale();
+        return fn (mixed $livewire): bool => static::activeLocale($livewire) === Localization::defaultLocale();
     }
 
     /**

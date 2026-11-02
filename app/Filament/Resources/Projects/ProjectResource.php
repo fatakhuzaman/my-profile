@@ -46,13 +46,6 @@ class ProjectResource extends Resource
         return ProjectsTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [

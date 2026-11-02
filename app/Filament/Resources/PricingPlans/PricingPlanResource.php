@@ -46,13 +46,6 @@ class PricingPlanResource extends Resource
         return PricingPlansTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [

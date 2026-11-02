@@ -3,9 +3,10 @@
 @php
     /** @var \App\Models\Project $project */
     $url = localized_route('works.show', ['slug' => $project->slug]);
+    $categorySlugs = $project->categories->pluck('slug')->filter()->implode(' ');
 @endphp
 
-<div {{ $attributes->class(['col-lg-4 col-md-6 item']) }} data-categories="{{ $project->categories->map(fn ($category) => $category->getTranslation('slug', app()->getLocale()))->filter()->implode(' ') }}">
+<div {{ $attributes->class(['col-lg-4 col-md-6 item']) }} data-categories="{{ $categorySlugs }}">
     <div class="project-item style-two wow fadeInUp delay-0-3s">
         <div class="project-image">
             @if ($project->cover_image)

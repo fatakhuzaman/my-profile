@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Page;
+use App\Support\Localization;
 use App\Support\SeoMeta;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
@@ -27,9 +28,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // Content is authored in the default locale first, so untranslated
         // fields fall back to it rather than to the framework fallback.
-        Translatable::fallback(fallbackLocale: config('app.supported_locales')[0]);
+        Translatable::fallback(fallbackLocale: Localization::defaultLocale());
 
-        // Surface N+1 queries while developing instead of in production.
         Model::preventLazyLoading(! $this->app->isProduction());
 
         View::composer(['components.site.header', 'components.site.footer'], function (ViewInstance $view): void {

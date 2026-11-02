@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Filament\Support\Media;
 use App\Models\Setting;
+use App\Support\Localization;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
@@ -174,7 +175,7 @@ class SiteSettings extends Page
         return [
             Grid::make(2)->schema(array_map(
                 fn (string $locale) => $component::make("{$key}.{$locale}")->label("{$label} (".strtoupper($locale).')'),
-                config('app.supported_locales'),
+                Localization::locales(),
             )),
         ];
     }

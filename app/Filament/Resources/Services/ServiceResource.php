@@ -46,13 +46,6 @@ class ServiceResource extends Resource
         return ServicesTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [

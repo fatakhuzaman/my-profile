@@ -45,7 +45,6 @@ img {
     }
 }
 
-/* Language switcher in the header. */
 .language-switcher {
     display: flex;
     gap: 6px;

@@ -25,4 +25,26 @@ enum ResumeEntryType: string implements HasLabel
     {
         return $this->label();
     }
+
+    /**
+     * Remix Icon class shown next to each entry of this type.
+     */
+    public function icon(): string
+    {
+        return match ($this) {
+            self::Work => 'ri-book-marked-line',
+            self::Internship => 'ri-book-line',
+            self::Education => 'ri-school-line',
+            self::Achievement => 'ri-award-fill',
+        };
+    }
+
+    /**
+     * Whether the entry's title (degree, award) leads instead of the
+     * organization (employer).
+     */
+    public function leadsWithTitle(): bool
+    {
+        return in_array($this, [self::Education, self::Achievement], true);
+    }
 }

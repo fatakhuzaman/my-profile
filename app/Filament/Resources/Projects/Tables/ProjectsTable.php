@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Projects\Tables;
 
-use App\Filament\Support\PublishStatus;
+use App\Filament\Support\PublishStatusTable;
 use App\Models\Project;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -30,13 +30,13 @@ class ProjectsTable
                 TextColumn::make('year')
                     ->label('Tahun')
                     ->sortable(),
-                PublishStatus::column(),
+                PublishStatusTable::column(),
                 IconColumn::make('is_featured')
                     ->label('Unggulan')
                     ->boolean(),
             ])
             ->filters([
-                PublishStatus::filter(),
+                PublishStatusTable::filter(),
             ])
             ->recordActions([
                 EditAction::make(),

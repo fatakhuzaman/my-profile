@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Tables;
 
-use App\Filament\Support\PublishStatus;
+use App\Filament\Support\PublishStatusTable;
 use App\Models\Category;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -31,13 +31,13 @@ class PostsTable
                 TextColumn::make('category.name')
                     ->label('Kategori')
                     ->placeholder('-'),
-                PublishStatus::column(),
+                PublishStatusTable::column(),
                 IconColumn::make('is_featured')
                     ->label('Unggulan')
                     ->boolean(),
             ])
             ->filters([
-                PublishStatus::filter(),
+                PublishStatusTable::filter(),
                 SelectFilter::make('category_id')
                     ->label('Kategori')
                     ->relationship('category', 'name')
