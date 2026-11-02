@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\PricingPlan;
 use App\Models\Service;
 use App\Support\SeoMeta;
+use App\Support\StructuredData;
 use Illuminate\View\View;
 
 class ServiceController extends Controller
@@ -26,10 +27,18 @@ class ServiceController extends Controller
     {
         $service = Service::published()->translatedIn()->whereSlug($slug)->firstOrFail();
 
+        $plans = $service->pricingPlans()->published()->ordered()->get();
+
+        $seo = SeoMeta::forRecord($service, 'services.show', $service->image, 'website');
+        $seo->withSchema(
+            StructuredData::service($service, $plans, $seo),
+            StructuredData::breadcrumbs('services', 'services.index', $service->title),
+        );
+
         return view('services.show', [
             'service' => $service,
-            'seo' => SeoMeta::forRecord($service, 'services.show', $service->image, 'website'),
-            'plans' => $service->pricingPlans()->published()->ordered()->get(),
+            'seo' => $seo,
+            'plans' => $plans,
             'otherServices' => Service::published()->translatedIn()->whereKeyNot($service->getKey())->ordered()->get(),
         ]);
     }

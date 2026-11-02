@@ -4,7 +4,9 @@ use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Middleware\SetLocale;
 use App\Support\Localization;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +47,9 @@ foreach (Localization::locales() as $locale) {
 
     $group->group(fn () => $publicRoutes($locale));
 }
+
+Route::get('sitemap.xml', SitemapController::class)->name('sitemap');
+Route::get('robots.txt', RobotsController::class)->name('robots');
 
 /*
  * URLs of the first version of the site (English paths without a prefix).

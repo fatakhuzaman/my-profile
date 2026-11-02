@@ -53,7 +53,8 @@ class RedirectResource extends Resource
                     ->label('Ke URL')
                     ->placeholder('/blog/judul-baru')
                     ->helperText('Path baru atau URL lengkap.')
-                    ->required(),
+                    ->required()
+                    ->different('from_path'),
                 Select::make('status_code')
                     ->label('Jenis')
                     ->options([

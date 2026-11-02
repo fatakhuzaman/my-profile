@@ -43,4 +43,31 @@ class Redirect extends Model
             'last_hit_at' => 'datetime',
         ];
     }
+
+    /**
+     * The active redirect for a request path, with or without a trailing slash.
+     */
+    public static function findForPath(string $path): ?self
+    {
+        $path = '/'.trim(rawurldecode($path), '/');
+
+        return static::query()
+            ->where('is_active', true)
+            ->whereIn('from_path', [$path, $path.'/'])
+            ->first();
+    }
+
+    /**
+     * The absolute URL to send visitors to; `to_path` may be a path on this
+     * site or a full URL elsewhere.
+     */
+    public function targetUrl(): string
+    {
+        return str_starts_with($this->to_path, '/') ? url($this->to_path) : $this->to_path;
+    }
+
+    public function recordHit(): void
+    {
+        static::query()->whereKey($this->getKey())->increment('hits', 1, ['last_hit_at' => now()]);
+    }
 }

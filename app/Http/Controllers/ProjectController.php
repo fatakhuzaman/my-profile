@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Support\SeoMeta;
+use App\Support\StructuredData;
 use Illuminate\View\View;
 
 class ProjectController extends Controller
@@ -37,9 +38,15 @@ class ProjectController extends Controller
     {
         $project = Project::published()->translatedIn()->whereSlug($slug)->with('categories')->firstOrFail();
 
+        $seo = SeoMeta::forRecord($project, 'works.show', $project->cover_image);
+        $seo->withSchema(
+            StructuredData::creativeWork($project, $seo),
+            StructuredData::breadcrumbs('works', 'works.index', $project->title),
+        );
+
         return view('projects.show', [
             'project' => $project,
-            'seo' => SeoMeta::forRecord($project, 'works.show', $project->cover_image),
+            'seo' => $seo,
         ]);
     }
 }

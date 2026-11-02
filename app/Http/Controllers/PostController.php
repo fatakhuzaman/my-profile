@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Models\Post;
 use App\Support\SeoMeta;
+use App\Support\StructuredData;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -28,11 +29,18 @@ class PostController extends Controller
     {
         $post = Post::published()->translatedIn()->whereSlug($slug)->with(['author', 'category', 'tags'])->firstOrFail();
 
+        $seo = SeoMeta::forRecord($post, 'blog.show', $post->cover_image);
+        $seo->withSchema(
+            StructuredData::blogPosting($post, $seo),
+            StructuredData::breadcrumbs('blog', 'blog.index', $post->title),
+        );
+
         return view('posts.show', [
             'post' => $post,
-            'seo' => SeoMeta::forRecord($post, 'blog.show', $post->cover_image),
+            'seo' => $seo,
             'relatedPosts' => Post::published()
                 ->translatedIn()
+                ->with('category')
                 ->whereKeyNot($post->getKey())
                 ->when($post->category_id, fn ($query) => $query->where('category_id', $post->category_id))
                 ->latestPublished()

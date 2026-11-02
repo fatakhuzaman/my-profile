@@ -14,6 +14,13 @@ use Illuminate\Support\Str;
 class SeoMeta
 {
     /**
+     * Page-specific schema.org nodes, rendered after the site-wide ones.
+     *
+     * @var list<array<string, mixed>>
+     */
+    public array $schema = [];
+
+    /**
      * @param  array<string, string>  $alternates  locale => URL
      */
     public function __construct(
@@ -89,6 +96,27 @@ class SeoMeta
         }
 
         return $alternates;
+    }
+
+    /**
+     * @param  array<string, mixed>  ...$nodes
+     */
+    public function withSchema(array ...$nodes): static
+    {
+        array_push($this->schema, ...array_values($nodes));
+
+        return $this;
+    }
+
+    /**
+     * The JSON-LD graph of the page, safe to print inside a <script> tag.
+     */
+    public function jsonLd(): string
+    {
+        return json_encode([
+            '@context' => 'https://schema.org',
+            '@graph' => [...StructuredData::site(), ...$this->schema],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_THROW_ON_ERROR);
     }
 
     public function canonical(): string

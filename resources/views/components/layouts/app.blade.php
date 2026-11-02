@@ -37,6 +37,8 @@
         <meta name="twitter:card" content="summary_large_image">
     @endif
 
+    <script type="application/ld+json">{!! $seo->jsonLd() !!}</script>
+
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
 
